@@ -17,19 +17,22 @@ function toTimeZone(time, ampm, zone) {
     time = time.join(':')
     let newTime = moment.tz("1970-01-01 " + time , 'America/Los_Angeles')
 
-    if (zone.toLowerCase() === 'mdt') {
+    if (zone.toLowerCase() === 'mdt' || zone.toLowerCase() === 'mt') {
         newTime = newTime.tz('America/Denver').format('h:mma z')
         return `${reply} ${newTime}`
     }
-    else if (zone.toLowerCase() === "cdt" ) {
+    else if (zone.toLowerCase() === "cdt" || zone.toLowerCase() === 'ct' ) {
         newTime = newTime.tz('America/Chicago').format('h:mma z')
         return `${reply} ${newTime}`
     }
-    else if (zone.toLowerCase() === "edt" ) {
+    else if (zone.toLowerCase() === "edt" || zone.toLowerCase() === 'et' ) {
         newTime = newTime.tz('America/New_York').format('h:mma z')
         return `${reply} ${newTime}`
     }
+    else if (zone.toLowerCase() === 'pdt' || zone.toLowerCase() === 'pt') {
+        return `You're already in Lambda Time :)`
+    }
     else {
-        return `Sorry, we haven't added support for your time zone yet`
+        return `Sorry, we haven't added support for your time zone yet. (Mountain Time = MDT, Central Time = CDT, Eastern Time = EDT)`
     }
 }
