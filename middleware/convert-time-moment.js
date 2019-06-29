@@ -8,7 +8,6 @@ module.exports = {
 
 function toTimeZone(time, ampm, zone) {
     const reply = `${time} Lambda Time occurs at`
-    console.log('time', time)
     time = time.split(':')
     time[0].padStart(2, 0)
     if (ampm.toUpperCase() === 'PM' && time[0] < 12) {
